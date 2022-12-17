@@ -26,7 +26,7 @@ public class System {
             cascade.setPower(-0.2);
             cascadeDown.setPower(-1);
         } else {
-            cascade.setPower(1);
+            cascade.setPower(0.2);
             cascadeDown.setPower(1);
         }
     }

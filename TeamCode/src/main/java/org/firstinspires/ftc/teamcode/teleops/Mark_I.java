@@ -23,7 +23,7 @@ public class Mark_I {
             system.Elevate(0);
         } else {
             system.cascade.setPower(0.1);
-            system.cascadeDown.setPower(-.5);
+            system.cascadeDown.setPower(-.1);
         }
 
         if (gamepad1.dpad_left) {
