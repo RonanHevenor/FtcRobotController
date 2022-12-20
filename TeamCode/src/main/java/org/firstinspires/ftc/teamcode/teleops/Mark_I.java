@@ -22,8 +22,12 @@ public class Mark_I {
         } else if (gamepad1.dpad_down) {
             system.Elevate(0);
         } else {
-            system.cascade.setPower(0.1);
-            system.cascadeDown.setPower(-.1);
+            if (system.touch.isPressed()) {
+                system.cascade.setPower(0);
+//            system.cascadeDown.setPower(0);
+            } else {
+                system.cascade.setPower((-.2));
+            }
         }
 
         if (gamepad1.dpad_left) {
@@ -35,10 +39,10 @@ public class Mark_I {
         }
 
         if (gamepad1.a) {
-            system.spinLeft.setPosition(1);
+            system.spinLeft.setPosition(-1);
             system.spinRight.setPosition(1);
         } else if (gamepad1.b) {
-            system.spinLeft.setPosition(-1);
+            system.spinLeft.setPosition(1);
             system.spinRight.setPosition(-1);
         }
     }
