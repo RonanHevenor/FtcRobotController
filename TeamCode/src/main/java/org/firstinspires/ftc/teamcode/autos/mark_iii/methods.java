@@ -1,12 +1,12 @@
-package org.firstinspires.ftc.teamcode.autos;
+package org.firstinspires.ftc.teamcode.autos.mark_iii;
 
 import static android.os.SystemClock.sleep;
 
 import org.firstinspires.ftc.teamcode.subsystems.Drive;
 import org.firstinspires.ftc.teamcode.subsystems.System;
 
-public class Mark_II {
-    public Mark_II(Drive drive, System system) {}
+public class methods {
+    public methods(Drive drive, System system) {}
 
 //            R--------R    |   B---------B
 //                  L1            L3
@@ -51,7 +51,7 @@ public class Mark_II {
             sleep(1200);
             drive.strafeLeftRaw(-1);
             drive.backwardRaw(0);
-            system.cascade.setPower(1);
+//            system.cascade.setPower(1);
             sleep(5000);
             drive.spinLeftRaw(0.3);
             sleep(700);
@@ -65,7 +65,7 @@ public class Mark_II {
             // drop
 
             // now go to parking spot
-                //backtrack
+            //backtrack
             drive.spinRightRaw(0.3);
             sleep(700);
             drive.spinLeftRaw(1);
@@ -75,7 +75,7 @@ public class Mark_II {
             drive.spinLeftRaw(1);
             drive.forwardRaw(0);
             sleep(1000);
-                //backward
+            //backward
             drive.forwardRaw(0.3);
             sleep(1000);
             drive.forwardRaw(0);
@@ -83,46 +83,31 @@ public class Mark_II {
         } else if (scan == 3) {
 
         }
-    public void L1(Drive drive, System system) {
-        //forward
-        drive.backwardRaw(0.4);
-        sleep(1100);
-        drive.backwardRaw(-1);
-        drive.backwardRaw(0);
-
-        sleep(1000);
-        //spin
-        drive.spinRightRaw(0.4);
-        sleep(1700);
-        drive.spinRightRaw(-1);
-        drive.spinRightRaw(0);
     }
+
+    public void L1(Drive drive, System system) {
+
+    }
+
     public void L2(Drive drive, System system) {
         //forward
         drive.backwardRaw(0.4);
         sleep(1100);
         drive.backwardRaw(-1);
         drive.backwardRaw(0);
-
         sleep(1000);
-        //spin
-        drive.spinRightRaw(0.4);
-        sleep(1800);
-        drive.spinRightRaw(-1);
-        drive.spinRightRaw(0);
-    }
-    public void L3(Drive drive, System system) {
+        //spinright
+        drive.strafeLeftRaw(0.4);
+        sleep(250);
+        drive.strafeRightRaw(-1);
+        drive.backwardRaw(0);
+        sleep(1000);
         //forward
         drive.backwardRaw(0.4);
-        sleep(1100);
+        sleep(2500);
         drive.backwardRaw(-1);
         drive.backwardRaw(0);
-
-        sleep(1000);
-        //spin
-        drive.spinRightRaw(0.4);
-        sleep(1900);
-        drive.spinRightRaw(-1);
-        drive.spinRightRaw(0);
     }
+
+    public void L3(Drive drive, System system) {}
 }

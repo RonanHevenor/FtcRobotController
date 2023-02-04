@@ -1,8 +1,12 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
+import static android.os.SystemClock.sleep;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Drive {
     public DcMotor frontLeft;
@@ -11,15 +15,20 @@ public class Drive {
     public DcMotor backRight;
 
     public Drive(HardwareMap hardwareMap) {
-        frontLeft = hardwareMap.get(DcMotor.class, "leftFront");
-        backLeft = hardwareMap.get(DcMotor.class, "leftRear");
-        backRight = hardwareMap.get(DcMotor.class, "rightRear");
-        frontRight = hardwareMap.get(DcMotor.class, "rightFront");
+        frontLeft = hardwareMap.get(DcMotor.class, "leftFront"); // Port 0 CH
+        frontRight = hardwareMap.get(DcMotor.class, "rightFront"); // Port 1 CH
+        backLeft = hardwareMap.get(DcMotor.class, "leftRear"); // Port 2 CH
+        backRight = hardwareMap.get(DcMotor.class, "rightRear"); // Port 3 CH
 
-        frontLeft.setDirection(DcMotor.Direction.REVERSE);
-        backLeft.setDirection(DcMotor.Direction.REVERSE);
-        frontRight.setDirection(DcMotor.Direction.FORWARD);
+        frontLeft.setDirection(DcMotor.Direction.FORWARD);
+        backLeft.setDirection(DcMotor.Direction.FORWARD);
+        frontRight.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.REVERSE);
+
+        frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
     public void spinLeftRaw(double power) {
@@ -116,37 +125,60 @@ public class Drive {
         backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
-    public void forward(double power, int ticks) {
+    public void forward(double power, int ticks, Telemetry telemetry) {
+        frontLeft.setDirection(DcMotor.Direction.FORWARD);
+        backLeft.setDirection(DcMotor.Direction.FORWARD);
+        frontRight.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
+
         stop_and_reset_encoders();
+
         frontLeft.setTargetPosition(ticks);
         frontRight.setTargetPosition(ticks);
         backLeft.setTargetPosition(ticks);
         backRight.setTargetPosition(ticks);
+
         run_to_position();
+
+        frontLeft.setPower(power);
+        frontRight.setPower(power);
+        backLeft.setPower(power);
+        backRight.setPower(power);
+
         while (backLeft.isBusy()) {
-            forwardRaw(power);
+            telemetry.addData("Status", "waiting for finish");
+            telemetry.update();
         }
     }
 
-    public void backward(double power, int ticks) {
-        ticks = (ticks*-1);
+    public void spinLeft(double power, int ticks, Telemetry telemetry) {
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
+        frontRight.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
+
         stop_and_reset_encoders();
+
         frontLeft.setTargetPosition(ticks);
         frontRight.setTargetPosition(ticks);
         backLeft.setTargetPosition(ticks);
         backRight.setTargetPosition(ticks);
-        run_to_position();
-        while (frontLeft.isBusy()) {
-            backwardRaw(power);
-        }
-    }
 
-    public void strafeRight(double power, int ticks) {
-        stop_and_reset_encoders();
-        frontLeft.setTargetPosition(ticks);
-        frontRight.setTargetPosition(ticks * -1);
-        backLeft.setTargetPosition(ticks * -1);
-        backRight.setTargetPosition(ticks);
         run_to_position();
+
+        frontLeft.setPower(power);
+        frontRight.setPower(power);
+        backLeft.setPower(power);
+        backRight.setPower(power);
+
+        while (backLeft.isBusy()) {
+            telemetry.addData("Status", "waiting for finish");
+            telemetry.update();
+        }
+
+        frontLeft.setDirection(DcMotor.Direction.FORWARD);
+        backLeft.setDirection(DcMotor.Direction.FORWARD);
+        frontRight.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
     }
 }

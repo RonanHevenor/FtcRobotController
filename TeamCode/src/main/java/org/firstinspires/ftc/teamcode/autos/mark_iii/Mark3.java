@@ -19,17 +19,15 @@
  * SOFTWARE.
  */
 
-package org.firstinspires.ftc.teamcode.vision;
+package org.firstinspires.ftc.teamcode.autos.mark_iii;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.autos.Mark_II;
 import org.firstinspires.ftc.teamcode.subsystems.Drive;
 import org.firstinspires.ftc.teamcode.subsystems.System;
-import org.firstinspires.ftc.teamcode.teleops.Mark_I;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -37,12 +35,23 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import java.util.ArrayList;
 
+// PARKING AUTO WITH APRIL TAGS WORKS PERFECTLY
+// PARKING AUTO WITH APRIL TAGS WORKS PERFECTLY
+// PARKING AUTO WITH APRIL TAGS WORKS PERFECTLY
+// PARKING AUTO WITH APRIL TAGS WORKS PERFECTLY
+// PARKING AUTO WITH APRIL TAGS WORKS PERFECTLY
+// PARKING AUTO WITH APRIL TAGS WORKS PERFECTLY
+// PARKING AUTO WITH APRIL TAGS WORKS PERFECTLY
+// PARKING AUTO WITH APRIL TAGS WORKS PERFECTLY
+// PARKING AUTO WITH APRIL TAGS WORKS PERFECTLY
+// PARKING AUTO WITH APRIL TAGS WORKS PERFECTLY
+
 @Autonomous
-public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
+public class Mark3 extends LinearOpMode
 {
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
-    public Mark_II mark_ii;
+    public methods mark_ii;
     public Drive drive;
     public System system;
 
@@ -72,7 +81,7 @@ public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
         drive = new Drive(hardwareMap);
         system = new System(hardwareMap);
-        mark_ii = new Mark_II(drive, system);
+        mark_ii = new methods(drive, system);
 
         camera.setPipeline(aprilTagDetectionPipeline);
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
@@ -81,6 +90,7 @@ public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
             public void onOpened()
             {
                 camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
+                FtcDashboard.getInstance().startCameraStream(camera, 0);
             }
 
             @Override
@@ -193,18 +203,20 @@ public class AprilTagAutonomousInitDetectionExample extends LinearOpMode
         {
             if (tagOfInterest.id == 0) {
                 mark_ii.L1(drive, system);
+//                sleep(10000);
+//                requestOpModeStop();
             }
             else if (tagOfInterest.id == 1) {
                 mark_ii.L2(drive, system);
+//                sleep(10000);
+//                requestOpModeStop();
             }
             else if (tagOfInterest.id == 2) {
                 mark_ii.L3(drive, system);
+//                sleep(10000);
+//                requestOpModeStop();
             }
         }
-
-
-        /* You wouldn't have this in your autonomous, this is just to prevent the sample from ending */
-        while (opModeIsActive()) {sleep(20);}
     }
 
     void tagToTelemetry(AprilTagDetection detection)
