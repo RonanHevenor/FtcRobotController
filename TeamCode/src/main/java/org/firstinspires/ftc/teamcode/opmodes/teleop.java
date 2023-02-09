@@ -19,10 +19,11 @@ public class teleop extends LinearOpMode {
         drive = new Drive(hardwareMap);
         system = new System(hardwareMap);
         run = new Mark_I(drive, system);
-        int speed = 0;
-        int z = 0;
-        int x = 0;
-        int r = 0;
+        double speed = 35;
+        double z = 0;
+        double x = 0;
+        double r = 0;
+        double outSpeed = 1;
 
         drive.Run_without_encoder();
 
@@ -30,7 +31,7 @@ public class teleop extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            int[] returned = run.Run(drive, system, gamepad1, speed, z, x, r, telemetry);
+            double[] returned = run.Run(drive, system, gamepad1, speed, z, x, r, telemetry, outSpeed);
             speed = returned[0];
             z = returned[1];
             x = returned[2];

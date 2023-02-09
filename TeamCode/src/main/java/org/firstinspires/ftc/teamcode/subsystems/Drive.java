@@ -29,6 +29,8 @@ public class Drive {
         backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        Run_without_encoder();
     }
 
     public void spinLeftRaw(double power) {
@@ -151,10 +153,10 @@ public class Drive {
         }
     }
 
-    public void spinLeft(double power, int ticks, Telemetry telemetry) {
-        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+    public void strafeRight(double power, int ticks, Telemetry telemetry) {
+        frontLeft.setDirection(DcMotor.Direction.FORWARD);
         backLeft.setDirection(DcMotor.Direction.REVERSE);
-        frontRight.setDirection(DcMotor.Direction.REVERSE);
+        frontRight.setDirection(DcMotor.Direction.FORWARD);
         backRight.setDirection(DcMotor.Direction.REVERSE);
 
         stop_and_reset_encoders();
@@ -175,10 +177,5 @@ public class Drive {
             telemetry.addData("Status", "waiting for finish");
             telemetry.update();
         }
-
-        frontLeft.setDirection(DcMotor.Direction.FORWARD);
-        backLeft.setDirection(DcMotor.Direction.FORWARD);
-        frontRight.setDirection(DcMotor.Direction.REVERSE);
-        backRight.setDirection(DcMotor.Direction.REVERSE);
     }
 }

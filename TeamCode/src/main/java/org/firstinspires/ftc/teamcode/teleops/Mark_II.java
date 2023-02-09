@@ -8,8 +8,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.subsystems.Drive;
 import org.firstinspires.ftc.teamcode.subsystems.System;
 
-public class Mark_I {
-    public Mark_I(Drive drive, System system) {}
+public class Mark_II {
+    public Mark_II(Drive drive, System system) {}
 
     public double[] Run(Drive drive, System system, Gamepad gamepad1, double sM, double z, double x, double r, Telemetry telemetry, double outSpeed) {
         double speed = -gamepad1.left_stick_y * 0.02 * sM;
