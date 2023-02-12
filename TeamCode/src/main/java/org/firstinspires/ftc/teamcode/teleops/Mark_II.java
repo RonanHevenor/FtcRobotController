@@ -37,8 +37,8 @@ public class Mark_II {
             system.leftUp.setPower(outSpeed*0.1*gamepad2.right_stick_y);
             system.rightUp.setPower(outSpeed*0.1*gamepad2.right_stick_y);
         } else { // no input
-            system.leftUp.setPower(-0.2);
-            system.rightUp.setPower(-0.2);
+            system.leftUp.setPower(-0.1);
+            system.rightUp.setPower(-0.1);
         }
 
         if (gamepad2.left_stick_x <= 0) {
@@ -83,7 +83,7 @@ public class Mark_II {
         }
 
         //Return sM, z, x, and r using an int array
-        double[] toReturn = {sM, z, x, r};
+        double[] toReturn = {sM, z, x, r, outSpeed};
         return toReturn;
     }
 }

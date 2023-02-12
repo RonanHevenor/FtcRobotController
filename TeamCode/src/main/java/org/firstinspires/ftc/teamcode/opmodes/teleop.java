@@ -37,6 +37,7 @@ public class teleop extends LinearOpMode {
             z = returned[1];
             x = returned[2];
             r = returned[3];
+            outSpeed = returned[4];
             telemetry.update();
         }
     }
