@@ -49,9 +49,9 @@ public class Mark_II {
             system.carousel.setPower(0);
         }
 
-        if (gamepad2.left_trigger > 0.1) { //close
+        if (gamepad2.right_trigger > 0.1) { //close
             system.grabber.setPower(-1);
-        } else if (gamepad2.right_trigger > 0.1) { //open
+        } else if (gamepad2.left_trigger > 0.1) { //open
             system.grabber.setPower(1);
             sleep(210);
             system.grabber.setPower(0);
