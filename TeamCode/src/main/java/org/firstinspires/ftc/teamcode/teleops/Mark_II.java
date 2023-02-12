@@ -55,10 +55,9 @@ public class Mark_II {
             system.grabber.setPower(0);
         } else if (gamepad2.right_bumper) { //close
             system.grabber.setPower(1);
+            sleep(210);
+            system.grabber.setPower(0.1);
         }
-        //        } else {
-        //            system.grabber.setPower(0);
-        //        }
 
         if (gamepad2.left_stick_y >= 0) {
             system.out.setPower(outSpeed*gamepad2.left_stick_y);
