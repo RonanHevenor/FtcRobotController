@@ -34,8 +34,8 @@ public class Mark_II {
             system.leftUp.setPower(outSpeed*0.75*gamepad2.right_stick_y);
             system.rightUp.setPower(outSpeed*0.75*gamepad2.right_stick_y);
         } else if (gamepad2.right_stick_y > 0.05) { // down
-            system.leftUp.setPower(outSpeed*0.1*gamepad2.right_stick_y);
-            system.rightUp.setPower(outSpeed*0.1*gamepad2.right_stick_y);
+            system.leftUp.setPower((0.2*gamepad2.right_stick_y)/outSpeed);
+            system.rightUp.setPower((0.2*gamepad2.right_stick_y)/outSpeed);
         } else { // no input
             system.leftUp.setPower(-0.1);
             system.rightUp.setPower(-0.1);
