@@ -49,12 +49,12 @@ public class Mark_II {
             system.carousel.setPower(0);
         }
 
-        if (gamepad2.a) { //close
+        if (gamepad2.left_bumper) { //open
             system.grabber.setPower(-1);
-        } else if (gamepad2.b) { //open
-            system.grabber.setPower(1);
             sleep(210);
             system.grabber.setPower(0);
+        } else if (gamepad2.right_bumper) { //close
+            system.grabber.setPower(1);
         }
         //        } else {
         //            system.grabber.setPower(0);
