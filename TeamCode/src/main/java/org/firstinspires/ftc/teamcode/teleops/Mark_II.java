@@ -31,14 +31,14 @@ public class Mark_II {
 
 
         if (gamepad2.right_stick_y > 0) { // up
-            system.leftUp.setPower(-0.75*gamepad2.right_stick_y);
-            system.rightUp.setPower(-0.75*gamepad2.right_stick_y);
+            system.leftUp.setPower(0.75*gamepad2.right_stick_y);
+            system.rightUp.setPower(0.75*gamepad2.right_stick_y);
         } else if (gamepad2.right_stick_y < 0) { // down
-            system.leftUp.setPower(-0.1*gamepad2.right_stick_y);
-            system.rightUp.setPower(-0.1*gamepad2.right_stick_y);
+            system.leftUp.setPower(0.1*gamepad2.right_stick_y);
+            system.rightUp.setPower(0.1*gamepad2.right_stick_y);
         } else { // no input
-            system.leftUp.setPower(0.1);
-            system.rightUp.setPower(0.1);
+            system.leftUp.setPower(-0.1);
+            system.rightUp.setPower(-0.1);
         }
 
         if (gamepad2.left_stick_x <= 0) {
