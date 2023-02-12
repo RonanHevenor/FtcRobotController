@@ -30,15 +30,15 @@ public class Mark_II {
 //        telemetry.addData("backRight", (speed + turn + strafe));
 
 
-        if (gamepad2.right_stick_y < -0.01) { // up
+        if (gamepad2.right_stick_y < -0.05) { // up
             system.leftUp.setPower(0.75*gamepad2.right_stick_y);
             system.rightUp.setPower(0.75*gamepad2.right_stick_y);
-        } else if (gamepad2.right_stick_y > 0.01) { // down
+        } else if (gamepad2.right_stick_y > 0.05) { // down
             system.leftUp.setPower(0.1*gamepad2.right_stick_y);
             system.rightUp.setPower(0.1*gamepad2.right_stick_y);
         } else { // no input
-            system.leftUp.setPower(0.1);
-            system.rightUp.setPower(0.1);
+            system.leftUp.setPower(-0.2);
+            system.rightUp.setPower(-0.2);
         }
 
         if (gamepad2.left_stick_x <= 0) {
@@ -49,15 +49,12 @@ public class Mark_II {
             system.carousel.setPower(0);
         }
 
-        if (gamepad2.left_bumper) { //open
+        if (gamepad2.left_trigger > 0.1) { //close
             system.grabber.setPower(-1);
-            sleep(210);
-            system.grabber.setPower(0);
-        } else if (gamepad2.right_bumper) { //close
+        } else if (gamepad2.right_trigger > 0.1) { //open
             system.grabber.setPower(1);
             sleep(210);
-            system.grabber.setPower(0.1);
-        }
+            system.grabber.setPower(0);
 
         if (gamepad2.left_stick_y >= 0) {
             system.out.setPower(outSpeed*gamepad2.left_stick_y);
