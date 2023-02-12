@@ -6,19 +6,20 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.teleops.Mark_I;
 import org.firstinspires.ftc.teamcode.subsystems.Drive;
 import org.firstinspires.ftc.teamcode.subsystems.System;
+import org.firstinspires.ftc.teamcode.teleops.Mark_II;
 
 @TeleOp
 public class teleop extends LinearOpMode {
 
     public Drive drive;
     public System system;
-    public Mark_I run;
+    public Mark_II run;
 
     @Override
     public void runOpMode() {
         drive = new Drive(hardwareMap);
         system = new System(hardwareMap);
-        run = new Mark_I(drive, system);
+        run = new Mark_II(drive, system);
         double speed = 35;
         double z = 0;
         double x = 0;
@@ -31,7 +32,7 @@ public class teleop extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            double[] returned = run.Run(drive, system, gamepad1, speed, z, x, r, telemetry, outSpeed);
+            double[] returned = run.Run(drive, system, gamepad1, gamepad2, speed, z, x, r, telemetry, outSpeed);
             speed = returned[0];
             z = returned[1];
             x = returned[2];

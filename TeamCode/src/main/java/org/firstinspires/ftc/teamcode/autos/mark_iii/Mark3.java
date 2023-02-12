@@ -205,17 +205,17 @@ public class Mark3 extends LinearOpMode
              * since the tag was never sighted during INIT
              */
             // grab cone
-            sleep(5000);
+            sleep(500);
             system.grabber.setPower(1);
             sleep(500);
             system.grabber.setPower(0.1);
-            sleep(2000);
+            sleep(500);
 
             // lift to cone-off-ground position
             // turn position is(ms): 500
             system.leftUp.setPower(0.75);
             system.rightUp.setPower(0.75);
-            sleep(200);
+            sleep(1000);
             system.leftUp.setPower(0.1);
             system.rightUp.setPower(0.1);
             sleep(500);
@@ -254,7 +254,7 @@ public class Mark3 extends LinearOpMode
             // out to pole position
             // pole position requires time(ms):
             system.out.setPower(-0.3);
-            sleep(3600);
+            sleep(3000);
             system.out.setPower(0);
 
             // lift to letgo position

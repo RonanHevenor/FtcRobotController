@@ -11,7 +11,10 @@ import org.firstinspires.ftc.teamcode.subsystems.System;
 public class Mark_II {
     public Mark_II(Drive drive, System system) {}
 
-    public double[] Run(Drive drive, System system, Gamepad gamepad1, double sM, double z, double x, double r, Telemetry telemetry, double outSpeed) {
+    public double[] Run(Drive drive, System system, Gamepad gamepad1, Gamepad gamepad2, double sM, double z, double x, double r, Telemetry telemetry, double outSpeed) {
+        // gamepad1: chassis
+        // gamepad2: intake systems
+
         double speed = -gamepad1.left_stick_y * 0.02 * sM;
         double strafe = -gamepad1.left_stick_x * 0.02 * sM;
         double turn = -gamepad1.right_stick_x * 0.02 * sM;
@@ -27,28 +30,28 @@ public class Mark_II {
 //        telemetry.addData("backRight", (speed + turn + strafe));
 
 
-        if (gamepad1.dpad_down) {
-            system.leftUp.setPower(-0.1);
-            system.rightUp.setPower(-0.1);
-        } else if (gamepad1.dpad_up) {
-            system.leftUp.setPower(0.75);
-            system.rightUp.setPower(0.75);
+        if (gamepad2.right_stick_y > 0) {
+            system.leftUp.setPower(-0.1*gamepad2.right_stick_y);
+            system.rightUp.setPower(-0.1*gamepad2.right_stick_y);
+        } else if (gamepad2.right_stick_y < 0) {
+            system.leftUp.setPower(0.75*gamepad2.right_stick_y);
+            system.rightUp.setPower(0.75*gamepad2.right_stick_y);
         } else {
             system.leftUp.setPower(0.1);
             system.rightUp.setPower(0.1);
         }
 
-        if (gamepad1.dpad_left) {
-            system.carousel.setPower(-.5*outSpeed);
-        } else if (gamepad1.dpad_right) {
-            system.carousel.setPower(.5*outSpeed);
+        if (gamepad2.left_stick_x <= 0) {
+            system.carousel.setPower(.5*outSpeed*gamepad2.left_stick_x);
+        } else if (gamepad2.left_stick_x >= 0) {
+            system.carousel.setPower(.5*outSpeed*gamepad2.left_stick_x);
         } else {
             system.carousel.setPower(0);
         }
 
-        if (gamepad1.a) { //close
+        if (gamepad2.a) { //close
             system.grabber.setPower(-1);
-        } else if (gamepad1.b) { //open
+        } else if (gamepad2.b) { //open
             system.grabber.setPower(1);
             sleep(210);
             system.grabber.setPower(0);
@@ -57,10 +60,10 @@ public class Mark_II {
         //            system.grabber.setPower(0);
         //        }
 
-        if (gamepad1.x) {
-            system.out.setPower(outSpeed);
-        } else if (gamepad1.y) {
-            system.out.setPower(-outSpeed);
+        if (gamepad2.left_stick_y >= 0) {
+            system.out.setPower(outSpeed*gamepad2.left_stick_y);
+        } else if (gamepad2.left_stick_y <= 0) {
+            system.out.setPower(outSpeed*gamepad2.left_stick_y);
         } else {
             system.out.setPower(0);
         }
