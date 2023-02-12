@@ -31,11 +31,11 @@ public class Mark_II {
 
 
         if (gamepad2.right_stick_y < -0.05) { // up
-            system.leftUp.setPower(0.75*gamepad2.right_stick_y);
-            system.rightUp.setPower(0.75*gamepad2.right_stick_y);
+            system.leftUp.setPower(outSpeed*0.75*gamepad2.right_stick_y);
+            system.rightUp.setPower(outSpeed*0.75*gamepad2.right_stick_y);
         } else if (gamepad2.right_stick_y > 0.05) { // down
-            system.leftUp.setPower(0.1*gamepad2.right_stick_y);
-            system.rightUp.setPower(0.1*gamepad2.right_stick_y);
+            system.leftUp.setPower(outSpeed*0.1*gamepad2.right_stick_y);
+            system.rightUp.setPower(outSpeed*0.1*gamepad2.right_stick_y);
         } else { // no input
             system.leftUp.setPower(-0.2);
             system.rightUp.setPower(-0.2);
@@ -55,6 +55,7 @@ public class Mark_II {
             system.grabber.setPower(1);
             sleep(210);
             system.grabber.setPower(0);
+        }
 
         if (gamepad2.left_stick_y >= 0) {
             system.out.setPower(outSpeed*gamepad2.left_stick_y);
@@ -75,9 +76,9 @@ public class Mark_II {
         }
 
         //slowmode
-        if (gamepad1.right_bumper) {
+        if (gamepad2.right_bumper) {
             outSpeed = 1;
-        } else if (gamepad1.left_bumper) {
+        } else if (gamepad2.left_bumper) {
             outSpeed = 0.5;
         }
 
