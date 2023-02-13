@@ -77,17 +77,22 @@ public class Mark3 extends LinearOpMode
     @Override
     public void runOpMode()
     {
-        // grabber close : maybe?
-//        system.grabber.setPower(1);
-//        sleep(500);
-//        system.grabber.setPower(0.1);
-
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
         aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
         drive = new Drive(hardwareMap);
         system = new System(hardwareMap);
         mark_ii = new methods(drive, system);
+
+        // arms up!
+        // to cone-off-ground position
+//        system.leftUp.setPower(0.75);
+//        system.rightUp.setPower(0.75);
+//        sleep(500);
+//        system.leftUp.setPower(0.1);
+//        system.rightUp.setPower(0.1);
+//        sleep(500);
+
 
         camera.setPipeline(aprilTagDetectionPipeline);
         camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
@@ -207,7 +212,7 @@ public class Mark3 extends LinearOpMode
             // grab cone
             sleep(500);
             system.grabber.setPower(1);
-            sleep(500);
+            sleep(1000);
             system.grabber.setPower(0.1);
             sleep(500);
 
@@ -239,7 +244,7 @@ public class Mark3 extends LinearOpMode
 
             // carousel to pole position
             // pole position is:
-            system.setCarousel(-500, telemetry);
+            system.setCarousel(-550, telemetry);
             sleep(500);
 
             // lift to apex position
@@ -254,10 +259,10 @@ public class Mark3 extends LinearOpMode
             // out to pole position
             // pole position requires time(ms):
             system.out.setPower(-0.3);
-            sleep(3000);
+            sleep(3500);
             system.out.setPower(0);
 
-            // lift to letgo position
+            // down to letgo position
             // apex position requires time(ms):
             system.leftUp.setPower(-0.1);
             system.rightUp.setPower(-0.1);
@@ -267,7 +272,7 @@ public class Mark3 extends LinearOpMode
             sleep(500);
 
             // pause to #notbounce
-            sleep(2000);
+            sleep(500);
 
             // grabber open
             system.grabber.setPower(-1);
@@ -275,7 +280,7 @@ public class Mark3 extends LinearOpMode
             system.grabber.setPower(0);
             sleep(500);
 
-            sleep(20000);
+            sleep(500);
         }
         else
         {
