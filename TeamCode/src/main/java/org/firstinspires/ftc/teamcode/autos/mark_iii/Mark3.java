@@ -223,15 +223,12 @@ public class Mark3 extends LinearOpMode
             sleep(1000);
             system.leftUp.setPower(0.1);
             system.rightUp.setPower(0.1);
-            sleep(500);
 
             // goto position
             // position is below
+            drive.forward(0.75, 2300, telemetry);
             sleep(500);
-            drive.forward(0.5, 2300, telemetry);
-            sleep(500);
-            drive.strafeRight(0.5, 350, telemetry);
-            sleep(500);
+            drive.strafeRight(0.75, 350, telemetry);
 
             // lift to turn position
             // turn position is(ms): 500
@@ -240,12 +237,10 @@ public class Mark3 extends LinearOpMode
             sleep(500);
             system.leftUp.setPower(0.1);
             system.rightUp.setPower(0.1);
-            sleep(500);
 
             // carousel to pole position
             // pole position is:
             system.setCarousel(-550, telemetry);
-            sleep(500);
 
             // lift to apex position
             // apex position requires time(ms):
@@ -254,7 +249,6 @@ public class Mark3 extends LinearOpMode
             sleep(2000);
             system.leftUp.setPower(0.1);
             system.rightUp.setPower(0.1);
-            sleep(500);
 
             // out to pole position
             // pole position requires time(ms):
@@ -279,6 +273,18 @@ public class Mark3 extends LinearOpMode
             sleep(500);
             system.grabber.setPower(0);
             sleep(500);
+
+            // --------- It all fricking works --------- //
+            // reset all
+            // in and down
+            system.out.setPower(0.3);
+            system.leftUp.setPower(0);
+            system.rightUp.setPower(0);
+            sleep(3500);
+            system.out.setPower(0);
+
+            // spin
+            system.setCarousel(0, telemetry);
 
             sleep(500);
         }

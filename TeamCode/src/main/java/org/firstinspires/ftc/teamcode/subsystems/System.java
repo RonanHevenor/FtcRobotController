@@ -31,7 +31,7 @@ public class System {
         grabber = hardwareMap.get(CRServo.class, "spinLeft"); // Servo Port 0 EXP
         led = hardwareMap.get(TouchSensor.class, "led"); // 0:1 Analog CH
 
-
+        out.setDirection(DcMotorSimple.Direction.REVERSE);
         leftUp.setDirection(DcMotorSimple.Direction.REVERSE);
         rightUp.setDirection(DcMotorSimple.Direction.FORWARD);
     }
@@ -40,7 +40,7 @@ public class System {
         carousel.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         carousel.setTargetPosition(pos);
         carousel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        carousel.setPower(0.6);
+        carousel.setPower(0.8);
         while (carousel.isBusy()) {
             telemetry.addData("Status", "waiting for finish");
             telemetry.update();

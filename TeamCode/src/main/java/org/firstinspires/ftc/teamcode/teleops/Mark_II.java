@@ -50,9 +50,9 @@ public class Mark_II {
         }
 
         if (gamepad2.right_stick_x <= 0) {
-            system.carousel.setPower(.5*outSpeed*gamepad2.right_stick_x);
+            system.carousel.setPower(.75*outSpeed*gamepad2.right_stick_x);
         } else if (gamepad2.right_stick_x >= 0) {
-            system.carousel.setPower(.5*outSpeed*gamepad2.right_stick_x);
+            system.carousel.setPower(.75*outSpeed*gamepad2.right_stick_x);
         } else {
             system.carousel.setPower(0);
         }
