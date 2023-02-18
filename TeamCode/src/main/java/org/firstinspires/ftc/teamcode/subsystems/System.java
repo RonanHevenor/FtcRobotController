@@ -34,6 +34,7 @@ public class System {
 
         leftUp.setDirection(DcMotorSimple.Direction.REVERSE);
         rightUp.setDirection(DcMotorSimple.Direction.FORWARD);
+        out.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void setCarousel(int pos, Telemetry telemetry) {
