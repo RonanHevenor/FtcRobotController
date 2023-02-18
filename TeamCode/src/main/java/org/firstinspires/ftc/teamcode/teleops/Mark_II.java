@@ -42,7 +42,7 @@ public class Mark_II {
         }
 
         if (gamepad2.left_stick_x <= 0) {
-            system.carousel.setPower(.5*outSpeed*gamepad2.left_stick_x);
+            system.carousel.setPower(.5*outSpeed*(gamepad2.left_stick_x + gamepad2.right_stick_x));
         } else if (gamepad2.left_stick_x >= 0) {
             system.carousel.setPower(.5*outSpeed*gamepad2.left_stick_x);
         } else {
@@ -57,9 +57,9 @@ public class Mark_II {
             system.carousel.setPower(0);
         }
 
-        if (gamepad2.left_trigger > 0.1) { //close
+        if (gamepad2.right_trigger > 0.1) { //close
             system.grabber.setPower(-1);
-        } else if (gamepad2.right_trigger > 0.1) { //open
+        } else if (gamepad2.left_trigger > 0.1) { //open
             system.grabber.setPower(1);
             sleep(210);
             system.grabber.setPower(0);
