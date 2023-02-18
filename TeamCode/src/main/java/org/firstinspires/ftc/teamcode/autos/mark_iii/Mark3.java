@@ -240,7 +240,7 @@ public class Mark3 extends LinearOpMode
 
             // carousel to pole position
             // pole position is:
-            system.setCarousel(-550, telemetry);
+            system.setCarousel(-525, telemetry);
 
             // lift to apex position
             // apex position requires time(ms):
@@ -253,7 +253,7 @@ public class Mark3 extends LinearOpMode
             // out to pole position
             // pole position requires time(ms):
             system.out.setPower(-0.3);
-            sleep(3500);
+            sleep(3300);
             system.out.setPower(0);
 
             // down to letgo position
@@ -277,7 +277,8 @@ public class Mark3 extends LinearOpMode
             // --------- It all fricking works --------- //
             // reset all
             // in and down
-            system.out.setPower(0.3);
+            system.out.setPower(1);
+            sleep(100);
             system.leftUp.setPower(0);
             system.rightUp.setPower(0);
             sleep(3500);
